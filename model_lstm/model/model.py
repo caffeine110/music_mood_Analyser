@@ -7,22 +7,12 @@ Created on Sun Mar 24 01:06:08 2019
 """
 
 ##########################################################################################
-# This Python 3 environment comes with many helpful analytics libraries installed
-# It is defined by the kaggle/python docker image: https://github.com/kaggle/docker-python
-# For example, here's several helpful packages to load in 
-
 from keras.models import Sequential
 from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
 from keras.utils.np_utils import to_categorical
-#import re
-
-# Input data files are available in the "../input/" directory.
-# For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
-
-#sentiment_value
 
 
-##########################################################################################
+
 ##########################################################################################
 from preprocessing import X, Y, X_train, X_test, Y_train, Y_test
 max_fatures = 2000
@@ -60,7 +50,6 @@ callbacks_list = [checkpoint]
 ##########################################################################################
 ### training the model    
 #history = model.fit(X_train, Y_train, epochs=20, batch_size=8, validation_split = 0.2, callbacks=callbacks_list)
-
 
 batch_size = 32
 history = model.fit(X_train, Y_train, epochs = 5, batch_size=batch_size, validation_split = 0.2, callbacks=callbacks_list, verbose = 1)
@@ -115,33 +104,4 @@ print(history.history.keys())
 print(history.history.values())
 
  
-
-##########################################################################################
-"""
-from keras.callbacks import EarlyStopping
-early_stopping = EarlyStopping(monitor='val_loss', patience=4)
-
-clf_model.save('saved_model/my_clf_Model.h5')  # creates a HDF5 file 'my_model.h5'
-clf_model.save_weights('checkpoints/my_clf_Model_weights.h5')
-"""
-
-
-
-"""
-##########################################################################################
-validation_size = 1500
-
-X_validate = X_test[-validation_size:]
-Y_validate = Y_test[-validation_size:]
-X_test = X_test[:-validation_size]
-Y_test = Y_test[:-validation_size]
-score,acc = model.evaluate(X_test, Y_test, verbose = 1, batch_size = batch_size)
-print("score: %.2f" % (score))
-print("acc: %.2f" % (acc))
-"""
-
-
-
-
-
 print('Exicuted Succesfully EOF...')

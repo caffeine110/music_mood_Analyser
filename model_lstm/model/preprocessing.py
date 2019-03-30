@@ -17,7 +17,6 @@ from keras.preprocessing.sequence import pad_sequences
 
 
 
-
 ##########################################################################################
 data = pd.read_csv('../data/train_lyrics_1000.csv')
 print(data.columns)
@@ -50,11 +49,9 @@ print(data[ data['mood'] == 'happy'].size)
 print(data[ data['mood'] == 'sad'].size)
 
 
-"""
-for idx,row in data.iterrows():
-    row[0] = row[0].replace('rt',' ')
-"""
 
+
+##########################################################################################
 max_fatures = 2000
 tokenizer = Tokenizer(num_words=max_fatures, split=' ')
 tokenizer.fit_on_texts(data['lyrics'].values)
@@ -66,13 +63,13 @@ type(X)
 
 
 
-
-
-from sklearn.model_selection import train_test_split
-
 ##########################################################################################
 Y = pd.get_dummies(data['mood']).values
 print(Y)
+
+
+##########################################################################################
+from sklearn.model_selection import train_test_split
 
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size = 0.1, random_state = 42)
 print(X_train.shape,Y_train.shape)

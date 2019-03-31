@@ -13,6 +13,10 @@ from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
 from keras.utils.np_utils import to_categorical
 
 
+import pandas as pd
+import numpy as np
+
+
 
 ##########################################################################################
 def build_model(X):
@@ -34,9 +38,6 @@ def build_model(X):
 
 
 
-
-
-
 ##########################################################################################
 #from sklearn.feature_extraction.text import CountVectorizer
 from keras.preprocessing.text import Tokenizer
@@ -48,16 +49,16 @@ from keras.preprocessing.sequence import pad_sequences
 # def to get sentiment
 def get_Sentiment_Polarity(song_text):
     
-    print(song_text)
+    #print(song_text)
+    df_series = pd.Series([song_text])
+    df_test = pd.DataFrame(data=df_series, columns = ['lyrics'])
 
     max_fatures = 2000
     tokenizer = Tokenizer(num_words=max_fatures, split=' ')
-    tokenizer.fit_on_texts(song_text)
-    X = tokenizer.texts_to_sequences(song_text)
+    tokenizer.fit_on_texts(df_test['lyrics'])
+    X = tokenizer.texts_to_sequences(df_test['lyrics'])
     X = pad_sequences(X)
     
-    print(X)
-
 
     ##########################################################################################
     saved_model = build_model(X)
@@ -71,23 +72,9 @@ def get_Sentiment_Polarity(song_text):
     
     ##########################################################################################
     y_pred = saved_model.predict(X)
-    y_pred = y_pred > 0.5
+    #y_pred = y_pred > 0.5
     #print(y_pred)
     
     return y_pred
-
-
-
-
-#song_text = 'Love me like you do'
-
-#acc = get_Sentiment_Polarity(song_text)
-
-
-
-
-
-
-
 
 

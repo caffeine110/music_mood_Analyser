@@ -56,7 +56,7 @@ song_text = song_text.replace('   ',' ')
 
 song_text = re.sub('[^a-zA-z0-9\s]','',song_text)
 
-print(song_text)
+#print(song_text)
 
 
 

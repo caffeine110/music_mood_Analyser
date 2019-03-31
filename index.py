@@ -29,6 +29,25 @@ def from_nltk(text_song):
 
 
 ###############################################################################
+def from_textblob(text_song):
+    # importing package     
+    from model_textblob.clf_textblob import get_Sentiment_Polarity
+    
+    # get relult
+    result_textblob = get_Sentiment_Polarity(text_song)
+    
+    print('\nSentiment Polarity for the song : ')
+    
+    #print('Lyrics : ',text_song)
+    
+    print('Using Textblob is...')
+
+    print(result_textblob)
+    return result_textblob
+
+
+
+###############################################################################
 def from_lstm(text_song):
     #importing packge
     
@@ -48,21 +67,23 @@ def from_lstm(text_song):
 
 
 ###############################################################################
-def from_textblob(text_song):
-    # importing package     
-    from model_textblob.clf_textblob import get_Sentiment_Polarity
+def from_MNB(text_song):
+    #importing packge
     
-    # get relult
-    result_textblob = get_Sentiment_Polarity(text_song)
-    
-    print('\nSentiment Polarity for the song : ')
-    
-    #print('Lyrics : ',text_song)
-    
-    print('Using Textblob is...')
+    from model_MNB.clf_MNB import get_Sentiment_Polarity
 
-    print(result_textblob)
-    return result_textblob
+    result_MNB = get_Sentiment_Polarity(song_text)
+    
+    print('\nSentiment Polarity for song : ')
+    
+    #print('Lyrics : ', text_song)
+    
+    print('Using MNB is ... ')
+    
+    print(result_MNB)
+    return result_MNB
+
+
 
 
 
@@ -72,22 +93,21 @@ def from_textblob(text_song):
 # get song text
 print('Hello I am Music Mood Analyser...\n')
 
-#song_text = 'Love me like you do'
-
 from processing import song_text
 
-#print(song_text)
-
-
+print(song_text)
 
 ###############################################################################
 # Functon call to models
+
 result_nltk = from_nltk(song_text)
 
 result_textblob = from_textblob(song_text)
 
 
 result_lstm = from_lstm(song_text)
+
+result_lstm = from_MNB(song_text)
 
 
 

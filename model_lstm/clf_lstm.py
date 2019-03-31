@@ -73,7 +73,7 @@ def get_Sentiment_Polarity(song_text):
     ##########################################################################################
     y_pred = saved_model.predict(X)
     #y_pred = y_pred > 0.5
-    #print(y_pred)
+    print(y_pred)
     
     return y_pred
 

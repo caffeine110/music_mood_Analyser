@@ -27,7 +27,7 @@ model.add(Embedding(max_fatures, embed_dim,input_length = X.shape[1]))
 model.add(SpatialDropout1D(0.4))
 model.add(LSTM(lstm_out, dropout=0.2, recurrent_dropout=0.2))
 model.add(Dense(2,activation='softmax'))
-model.compile(loss = 'categorical_crossentropy', optimizer='adam',metrics = ['accuracy'])
+model.compile(loss = 'binary_crossentropy', optimizer='adam',metrics = ['accuracy'])
 print(model.summary())
 
 

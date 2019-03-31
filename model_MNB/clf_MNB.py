@@ -67,6 +67,7 @@ def porter_tokenizer(text, stemmer=porter_stemmer):
       A list of tokens after stemming and removing Sentence punctuation patterns.
     
     """
+    
     lower_txt = text.lower()
     tokens = nltk.wordpunct_tokenize(lower_txt)
     stems = [porter_stemmer.stem(t) for t in tokens]

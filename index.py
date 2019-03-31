@@ -93,9 +93,30 @@ def from_MNB(text_song):
 # get song text
 print('Hello I am Music Mood Analyser...\n')
 
+
+"""
+from PyLyrics import *
+
+lyrics = PyLyrics.getLyrics('Taylor Swift', 'Blank Space')
+
+type(lyrics)
+
+    
+fileName = 'song_text.txt'
+
+file_obj = open(fileName, 'w')
+file_obj.write(lyrics)
+file_obj.close()
+
+"""
 from processing import song_text
 
 print(song_text)
+
+
+
+
+
 
 ###############################################################################
 # Functon call to models

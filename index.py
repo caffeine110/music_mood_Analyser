@@ -9,16 +9,16 @@ Created on Thu Mar 21 18:53:31 2019z
 
 
 ###############################################################################
-def from_nltk(text_song):
+def from_nltk(song_text):
     # importng package    
     from model_nltk.clf_nltk import SentimentAnalyser
     
     # get result
-    result_nltk = SentimentAnalyser(text_song)
+    result_nltk = SentimentAnalyser(song_text)
     
     print('\nSentiment Polarity for song : ')
     
-    #print('Lyrics : ',text_song)
+    #print('Lyrics : ',song_text)
     
     print('Using Nltk is ...')
 
@@ -29,16 +29,16 @@ def from_nltk(text_song):
 
 
 ###############################################################################
-def from_textblob(text_song):
+def from_textblob(song_text):
     # importing package     
     from model_textblob.clf_textblob import get_Sentiment_Polarity
     
     # get relult
-    result_textblob = get_Sentiment_Polarity(text_song)
+    result_textblob = get_Sentiment_Polarity(song_text)
     
     print('\nSentiment Polarity for the song : ')
     
-    #print('Lyrics : ',text_song)
+    #print('Lyrics : ',song_text)
     
     print('Using Textblob is...')
 
@@ -48,7 +48,7 @@ def from_textblob(text_song):
 
 
 ###############################################################################
-def from_lstm(text_song):
+def from_lstm(song_text):
     #importing packge
     
     from model_lstm.clf_lstm import get_Sentiment_Polarity
@@ -57,7 +57,7 @@ def from_lstm(text_song):
     
     print('\nSentiment Polarity for song : ')
     
-    #print('Lyrics : ', text_song)
+    #print('Lyrics : ', song_text)
     
     print('Using LSTM is ... ')
     
@@ -67,7 +67,7 @@ def from_lstm(text_song):
 
 
 ###############################################################################
-def from_MNB(text_song):
+def from_MNB(song_text):
     #importing packge
     
     from model_MNB.clf_MNB import get_Sentiment_Polarity
@@ -76,7 +76,7 @@ def from_MNB(text_song):
     
     print('\nSentiment Polarity for song : ')
     
-    #print('Lyrics : ', text_song)
+    #print('Lyrics : ', song_text)
     
     print('Using MNB is ... ')
     
@@ -93,7 +93,6 @@ def from_MNB(text_song):
 # get song text
 print('Hello I am Music Mood Analyser...\n')
 
-
 """
 from PyLyrics import *
 
@@ -101,36 +100,48 @@ lyrics = PyLyrics.getLyrics('Taylor Swift', 'Blank Space')
 
 type(lyrics)
 
-    
 fileName = 'song_text.txt'
 
 file_obj = open(fileName, 'w')
 file_obj.write(lyrics)
 file_obj.close()
-
 """
-from processing import song_text
 
-print(song_text)
+def get_Sentiment_Polarity(lyrics):
+    
+    #from processing import song_text
+    from processing import lyrics_processing
+    
+    song_text = lyrics_processing(lyrics)
+    
+    print(song_text)
+    
+    
+    ###############################################################################
+    # Functon call to models
+    
+    result_nltk = from_nltk(song_text)
+    
+    result_textblob = from_textblob(song_text)
+    
+    
+    result_lstm = from_lstm(song_text)
+    
+    result_MNB = from_MNB(song_text)
+    print(result_nltk)
+    print(result_textblob)
+    print(result_lstm)
+    print(result_MNB)
+    #print(type(result_nltk))
+    
+    return result_nltk
 
 
 
 
+lyrics = 'Love me like you do...'
 
-
-###############################################################################
-# Functon call to models
-
-result_nltk = from_nltk(song_text)
-
-result_textblob = from_textblob(song_text)
-
-
-result_lstm = from_lstm(song_text)
-
-result_lstm = from_MNB(song_text)
-
-
-
+res = get_Sentiment_Polarity(lyrics)
+print(res)
 
 print('\n\nExicuted Successfully...EOF...')

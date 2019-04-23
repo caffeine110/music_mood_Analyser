@@ -2,4 +2,5 @@
 
 Predictive analysis of mood from lyrics in English Language.
 
-Run index.py file to get results...
+Run the Server by exicuting the file main.py
+Go to the localhost and you will redirect to GUI...
